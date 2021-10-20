@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <title>Book's Table</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="user.html">Users</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="books.html">Books</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+    <div id="bookApp" class="container">
+        <div class="row align-items-start">
+          <div class="col col-4">
+            <!-- <p>Profile information for {{ person.name.first }}</p> -->
+            <div v-for="s in students" v-on:click="selectStudent(s)"
+             :class="['student', {selected: selectedStudent && s.id == selectedStudent.id}]">
+              <span class="userName">{{ s.username }}</span><br>
+              <span class="studentName">{{ s.name }}</span>
+            </div>
+          </div>
+
+          <div class="col col-8" v-if="selectedStudent">
+            <h1>Books for {{ selectedStudent.name }}</h1>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Author</th>
+                  <th>Price</th>
+                  <th>Purchased Date</th>
+                </tr>
+              </thead>
+                <tbody>
+                    <tr v-for="book in books">
+                        <td>{{ book.bookName }}</td>
+                        <td>{{ book.author}}</td>
+                        <td>{{ prettyDollar(book.price) }}</td>
+                        <td>{{ book.purDate }}</td>
+                        <td></td>
+                        <td>
+                          <button type="button" 
+                            class="btn btn-outline-secondary btn-sm"
+                            v-on:click="selectBookToEdit(book)">Edit</button>
+                          <button type="button" class="btn btn-outline-secondary btn-sm">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>{{ selectedBook === null ? "Add " : "Edit " }} Book</h3>
+            <form v-on:submit.prevent="postBook">
+              <div class="mb-3">
+                <label for="bookName" class="form-label">Title</label>
+                <input type="text" v-model="bookForm.bookName"
+                 class="form-control" id="bookName">
+              </div>
+              <div class="mb-3">
+                <label for="author" class="form-label">Author</label>
+                <input type="text" v-model="bookForm.author" class="form-control" id="author">
+              </div>
+              <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" v-model="bookForm.price" class="form-control" id="price">
+              </div>
+              <div class="mb-3">
+                <label for="purDate" class="form-label">Purchase Date</label>
+                <input type="date" v-model="bookForm.purDate" class="form-control" id="purDate">
+              </div>
+              <button type="submit" class="btn btn-primary">{{ selectedBook === null ? "Add " : "Edit " }} Book</button>
+              <button type="button" class="btn btn-outline-secondary" v-if="selectedBook" v-on:click="resetBookForm">Cancel</button>
+            </form>
+            <div class="noBooks" v-if="! books.length">
+              <h3>No books. 😥</h3>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <script src='js/tablesort.min.js'></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>
+  

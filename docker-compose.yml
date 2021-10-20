@@ -1,6 +1,6 @@
 version: "3"
 services:
-  msis-salary:
+  msis-db:
     build: .
     ports:
       - "8080:80"

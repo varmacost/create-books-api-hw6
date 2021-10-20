@@ -5,7 +5,7 @@ body {}
     margin: 10px 2px;
     padding: 4px;
     border: 1px solid gray;
-    background-color: antiquewhite;
+    background-color: rgb(143, 13, 13);
 }
 
 .selected {
@@ -14,8 +14,15 @@ body {}
 
 .userName {
     font-weight:bold;
+    color: white;
 }
 
 .studentName{
-    color:#999;
+    color:rgb(230, 198, 198);
 }
+  /*
+  https://www.w3schools.com/howto/howto_css_rounded_images.asp
+  https://www.w3schools.com/css/css_howto.asp
+  https://www.w3schools.com/css/css_navbar_horizontal.asp
+  https://www.google.com/search?q=books+images&rlz=1C5CHFA_enUS879US880&tbm=isch&source=iu&ictx=1&fir=-HMv_6w_SGUy1M%252CnBiD9BWYMB87aM%252C_&vet=1&usg=AI4_-kSS5qPWkgO9hek-ZBXhGntHyNyoQg&sa=X&ved=2ahUKEwjpjYjDo-PyAhWBK80KHWIdDhYQ9QF6BAgFEAE&biw=1218&bih=689#imgrc=-HMv_6w_SGUy1M
+  */
