@@ -65,12 +65,18 @@
                         <td>{{ prettyDollar(book.price) }}</td>
                         <td>{{ book.purDate }}</td>
                         <td></td>
-                        <td>
+                       <!--<td>
                           <button type="button" 
                             class="btn btn-outline-secondary btn-sm"
                             v-on:click="selectBookToEdit(book)">Edit</button>
                           <button type="button" class="btn btn-outline-secondary btn-sm">Delete</button>
-                        </td>
+                        </td>-->
+                      <td>
+                        <button type="button" class="btn btn-outline-secondary btn-sm"
+                        v-on:click="selectBook(book)">Edit</button>
+                      <button type="button" class="btn btn-outline-secondary btn-sm"
+                        v-on:click="postDeleteBook(book)">Delete</button>
+                      </td>
                     </tr>
                 </tbody>
             </table>
