@@ -80,6 +80,8 @@ const SomeApp = {
               // reset the form
               this.resetBookForm();
             });
+    
+            //in class 10/25 .catch( err =)
         },
         postEditBook(evt) {
           this.bookForm.studentId = this.selectedStudent.id;
@@ -102,9 +104,32 @@ const SomeApp = {
   
               // reset the form
               this.resetBookForm();
+              this.fetchBookData();
             });
         },
-        selectBookToEdit(o) {
+        postDeleteBook(o) {
+            if (!confirm("Are you sure you want to delete the book from "+o.bookName+"?")) {
+                return;
+            }
+            
+            fetch('api/book/delete.php', {
+                method:'POST',
+                body: JSON.stringify(o),
+                headers: {
+                  "Content-Type": "application/json; charset=utf-8"
+                }
+              })
+              .then( response => response.json() )
+              .then( json => {
+                console.log("Returned from post:", json);
+                // TODO: test a result was returned!
+                this.books = json;
+                
+                this.resetBookForm();
+                this.fetchBookData();
+            });
+        },
+        selectBook(o) {
             this.selectedBook = o;
             this.bookForm = Object.assign({}, this.selectedBook);
         },
